@@ -19,15 +19,6 @@ questions = [
 
 answers = {}
 
-# def cust_key(bot, message)
-#   kb = [[
-#     Telegram::Bot::Types::InlineKeyboardButton.new(text: 'start', callback_data: 'start')
-#   ]]
-#   markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-#   bot.api.send_message(chat_id: message.chat.id, text: 'Make a choice', reply_markup: markup)
-# end
-
-
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text
@@ -50,9 +41,7 @@ Telegram::Bot::Client.run(token) do |bot|
     end
     bot.api.send_message(chat_id: message.chat.id, text: "\u{2705} Спасибо, #{message.from.username}! Мы с вами свяжемся\nДля повторного заполнения введите команду: /start")
     bot.api.send_message(chat_id: '-1002015712774', text: "Информация для записи: \n#{answers.map { |k, v| "#{k} #{v}" }.join("\n")}")
-    answers.clear
-
-    #cust_key(bot, message)
+    answers.clear 
 
   end
 end
